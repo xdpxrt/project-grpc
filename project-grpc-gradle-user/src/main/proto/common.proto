@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.xd_pxrt.grpccommon";
+option java_outer_classname = "GeneratorProto";
+option objc_class_prefix = "RTG";
+
+package service;
+
+message UserRequest {
+  string id = 1;
+}
+
+message UserResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string birthday = 4;
+}
+
+service UserProtoService {
+
+  rpc getUser(UserRequest) returns (UserResponse);
+
+}

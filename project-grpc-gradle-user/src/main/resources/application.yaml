@@ -1,0 +1,32 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: project-grpc-gradle-user
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/user
+    username: postgres
+    password: postgres
+
+  liquibase:
+    url: jdbc:postgresql://localhost:5433/user
+    user: postgres
+    password: postgres
+    enabled: true
+    drop-first: false
+    change-log: classpath:db/db-changelog-master.yaml
+    default-schema: public
+    contexts: migrated
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          r2dbc: TRACE
+
+grpc:
+  server:
+    port: 9090

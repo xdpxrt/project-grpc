@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: project-grpc-graddle-account
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/account
+    username: postgres
+    password: postgres
+
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/account
+    user: postgres
+    password: postgres
+    enabled: true
+    drop-first: false
+    change-log: classpath:db/db-changelog-master.yaml
+    default-schema: public
+    contexts: migrated
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
+#        data:
+#        r2dbc: TRACE
+
+grpc:
+  client:
+    user-service:
+      address: static://localhost:9090
+      negotiation-type: plaintext
+  server:
+    port: 9091

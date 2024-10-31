@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - include:
+      file: uuid-ext.sql
+      relativeToChangelogFile: true
+  - include:
+      file: create-account-table.sql
+      relativeToChangelogFile: true
+
+changeSet:
+  id: 1.0.0
+  author: xd_pxrt
+  logicalFilePath: 1.0.0/master.yaml
+  changes:
+    - tagDatabase:
+        tag: 1.0.0
