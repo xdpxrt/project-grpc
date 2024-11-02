@@ -3,6 +3,7 @@ package com.xd_pxrt.projectgrpcgradleuser.controller;
 import com.xd_pxrt.projectgrpcgradleuser.dto.UserRequestDto;
 import com.xd_pxrt.projectgrpcgradleuser.dto.UserResponseDto;
 import com.xd_pxrt.projectgrpcgradleuser.dto.validation.UserValidation;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ public interface UserController {
     @GetMapping("/{id}")
     Mono<UserResponseDto> getUser(@PathVariable String id);
 
-    @GetMapping
+    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     Flux<UserResponseDto> getUsers();
 
 }

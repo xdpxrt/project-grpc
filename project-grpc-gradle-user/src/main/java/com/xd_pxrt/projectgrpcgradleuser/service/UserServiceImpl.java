@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import java.time.Duration;
 import java.util.UUID;
 
 @Service
@@ -37,7 +38,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Flux<UserResponseDto> getAllUsers() {
-        return userRepository.findAll().map(userMapper::toUserResponseDto);
+        return userRepository.findAll()
+                .delayElements(Duration.ofSeconds(1))
+                .map(userMapper::toUserResponseDto);
     }
-
 }

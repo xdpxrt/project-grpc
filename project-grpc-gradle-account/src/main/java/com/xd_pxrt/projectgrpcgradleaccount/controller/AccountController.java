@@ -2,6 +2,7 @@ package com.xd_pxrt.projectgrpcgradleaccount.controller;
 
 import com.xd_pxrt.projectgrpcgradleaccount.dto.validation.AccountValidation;
 import com.xd_pxrt.projectgrpcgradleaccount.dto.AccountDto;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,7 @@ public interface AccountController {
     @GetMapping("/client/{clientId}")
     Flux<AccountDto> getAllAccountsOfClient(@PathVariable String clientId);
 
-    @GetMapping()
+    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     Flux<AccountDto> getAllAccounts();
 
 }
